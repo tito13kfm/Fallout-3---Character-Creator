@@ -84,7 +84,7 @@ namespace Fallout_3___Character_Creator
             return;
         }
 
-        static int SelectCharacter()
+        private static int SelectCharacter()
         {
             int i = 1;
             foreach (Character c in characters)
