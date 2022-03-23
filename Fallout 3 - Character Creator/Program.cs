@@ -149,7 +149,7 @@ namespace Fallout_3___Character_Creator
             {
                 Console.Clear();
                 Console.WriteLine("Current " + statSelected + " is " + stat);
-                Console.WriteLine(characters[j].StatPoints + "remaining");
+                Console.WriteLine(characters[j].StatPoints + " remaining");
                 Console.Write("Enter new " + statSelected + ": ");
                 amount = Int32.Parse(Console.ReadLine());
                 if ((amount - stat) <= characters[j].StatPoints)
