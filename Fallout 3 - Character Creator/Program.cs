@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
-using System.Reflection;
+
 
 namespace Fallout_3___Character_Creator
 {
@@ -33,21 +31,7 @@ namespace Fallout_3___Character_Creator
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine("Character name: ");
-                        string name = Console.ReadLine();
-                        Character index = new Character();
-                        {
-                            index.Name = name;
-                            index.Strength = 5; index.Perception = 5; index.Endurance = 5; index.Charisma = 5;
-                            index.Intelligence = 5; index.Agility = 5; index.Luck = 5; index.StatPoints = 5;
-                            index.Barter = 15; index.BigGuns = 15; index.EnergyWeapons = 15; index.Explosives = 15;
-                            index.Lockpick = 15; index.Medicine = 15; index.MeleeWeapons = 15; index.Repair = 15;
-                            index.Science = 15; index.SmallGuns = 15; index.Sneak = 15; index.Speech = 15; index.Unarmed = 15;
-                        }
-                        characters.Add(index);
-                        Console.WriteLine(String.Format("Character {0} created successfully", index.Name));
-                        Console.WriteLine("Press Enter to continue");
-                        Console.ReadLine();
+                        CreateCharacter();
                         break;
                     case "2":
                         SelectCharacter();
@@ -61,6 +45,20 @@ namespace Fallout_3___Character_Creator
                         break;
                 }
             }
+        }
+
+        private static void CreateCharacter()
+        {
+            Console.WriteLine("Character name: ");
+            string name = Console.ReadLine();
+            Character index = new Character();
+            {
+                index.Name = name;
+            }
+            characters.Add(index);
+            Console.WriteLine(String.Format("Character {0} created successfully", index.Name));
+            Console.WriteLine("Press Enter to continue");
+            Console.ReadKey();
         }
 
         private static void EditCharacter(int j)
@@ -166,19 +164,23 @@ namespace Fallout_3___Character_Creator
 
         private static void PrintCharacter(int j)
         {
-            Console.ReadLine();
-
             Console.Clear();
-            Console.WriteLine("Name: {0,15}", characters[j].Name);
-            Console.WriteLine("   S.P.E.C.I.A.L   ");
-            Console.WriteLine("---------------------");
-            Console.WriteLine("Strength:           " + characters[j].Strength);
-            Console.WriteLine("Perception:         " + characters[j].Perception);
-            Console.WriteLine("Endurance:          " + characters[j].Endurance);
-            Console.WriteLine("Charisma:           " + characters[j].Charisma);
-            Console.WriteLine("Intelligence:       " + characters[j].Intelligence);
-            Console.WriteLine("Agility:            " + characters[j].Agility);
-            Console.WriteLine("Luck:               " + characters[j].Luck);
+            Console.WriteLine("{0,-5}{1,16}","Name", characters[j].Name);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}    {4,-20}{5,-2}", "    S.P.E.C.I.A.L", "", "", "", "         SKILLS","");
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}    {4,-20}{5,-2}", "---------------------", "", "", "", "----------------------", "");
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Strength:",characters[j].Strength,"Action Points", characters[j].Agility + 65,"Barter",characters[j].Barter);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Perception:", characters[j].Perception,"Carry Weight", characters[j].Strength*10 + 150,"Big Guns",characters[j].BigGuns);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Endurance:" , characters[j].Endurance, "Critical Chance", characters[j].Luck +"%", "Energy Weapons", characters[j].EnergyWeapons);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Charisma:" , characters[j].Charisma, "Dmg Resist", "0%", "Explosives", characters[j].Explosives);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Intelligence:" , characters[j].Intelligence, "Hit Points", characters[j].Endurance*20 + 100, "Lockpick", characters[j].Lockpick);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Agility:" , characters[j].Agility, "Melee Damage", characters[j].Strength*.5, "Medicine", characters[j].Medicine);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "Luck:" , characters[j].Luck, "Skill Points", characters[j].Intelligence + 10, "Melee Weapons", characters[j].MeleeWeapons);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "", "","","", "Repair", characters[j].Repair);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "", "","","", "Science", characters[j].Science);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "", "","","", "Small Guns", characters[j].SmallGuns);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "", "","","", "Sneak", characters[j].Sneak);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "", "","","", "Speech", characters[j].Speech);
+            Console.WriteLine("{0,-20}{1,-2}     {2,-20}{3,-3}     {4,-20}{5,-2}", "", "","","", "Unarmed", characters[j].Unarmed);
 
             Console.WriteLine();
             Console.WriteLine("Press Enter to continue");
