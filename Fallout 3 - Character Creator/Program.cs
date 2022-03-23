@@ -165,6 +165,7 @@ namespace Fallout_3___Character_Creator
             Console.Clear();
             Console.WriteLine(characters[j].Name);
             Console.WriteLine("   S.P.E.C.I.A.L   ");
+            Console.WriteLine("-------------------");
             Console.WriteLine("Strength:         " + characters[j].Strength);
             Console.WriteLine("Perception:       " + characters[j].Perception);
             Console.WriteLine("Endurance:        " + characters[j].Endurance);
