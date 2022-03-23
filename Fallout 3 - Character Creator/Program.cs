@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fallout_3___Character_Creator
 {
@@ -10,10 +7,11 @@ namespace Fallout_3___Character_Creator
     {
         static List<Character> characters = new List<Character>();
         static int j;
+        static int amount=0;
 
         static void Main(string[] args)
         {
-            
+
             while (true)
             {
                 Console.Clear();
@@ -49,7 +47,7 @@ namespace Fallout_3___Character_Creator
                         break;
                     case "2":
                         SelectCharacter();
-                        EditCharacter();
+                        EditCharacter(j);
                         break;
                     case "3":
                         SelectCharacter();
@@ -61,9 +59,105 @@ namespace Fallout_3___Character_Creator
             }
         }
 
-        private static void EditCharacter()
+        private static void EditCharacter(int j)
         {
-            throw new NotImplementedException();
+            bool quit = false;
+            Console.Clear();
+            while (!quit)
+            {
+                Console.Clear();
+                Console.WriteLine("You have " + characters[j].StatPoints + " Stat Points remaining");
+                Console.WriteLine("Edit which stat for " + characters[j].Name + " Q to quit");
+                Console.Write("S.P.E.C.I.A.L :");
+                string selection = Console.ReadLine().ToUpper();
+                string statSelected="";
+                int stat;
+                int changeAmount;
+                switch (selection)
+                {
+                    case "S":
+                        statSelected = "Strength";
+                        stat = characters[j].Strength;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Strength;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Strength = amount;                   
+                        break;
+                    case "P":
+                        statSelected = "Perception";
+                        stat = characters[j].Perception;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Perception;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Perception = amount;
+                        break;
+                    case "E":
+                        statSelected = "Endurance";
+                        stat = characters[j].Endurance;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Endurance;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Endurance = amount;
+                        break;
+                    case "C":
+                        statSelected = "Charisma";
+                        stat = characters[j].Charisma;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Charisma;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Charisma = amount;
+                        break;
+                    case "I":
+                        statSelected = "Intelligence";
+                        stat = characters[j].Intelligence;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Intelligence;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Intelligence = amount;
+                        break;
+                    case "A":
+                        statSelected = "Agility";
+                        stat = characters[j].Agility;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Agility;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Agility = amount;
+                        break;
+                    case "L":
+                        statSelected = "Luck";
+                        stat = characters[j].Luck;
+                        ModifyStat(stat, statSelected);
+                        changeAmount = amount - characters[j].Luck;
+                        characters[j].StatPoints = characters[j].StatPoints - changeAmount;
+                        characters[j].Luck = amount;
+                        break;
+                    case "Q":
+                        quit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Enter a valid selection");
+                        Console.WriteLine("Press any key to continue");
+                        break;
+                }
+            }
+        }
+
+        private static int ModifyStat(int stat, string statSelected)
+        {
+            bool valid = false;
+            while (!valid)
+            {
+                Console.Clear();
+                Console.WriteLine("Current " + statSelected + " is " + stat);
+                Console.WriteLine(characters[j].StatPoints + "remaining");
+                Console.Write("Enter new " + statSelected + ": ");
+                amount = Int32.Parse(Console.ReadLine());
+                if ((amount - stat) <= characters[j].StatPoints)
+                {
+                    valid = true;
+                }
+            }
+            return amount;
         }
 
         private static void PrintCharacter(int j)
@@ -92,10 +186,10 @@ namespace Fallout_3___Character_Creator
                 Console.WriteLine(i.ToString() + ") " + c.Name);
                 i++;
             }
-            Console.Write("Choose which character to print: ");
-            j = Int32.Parse(Console.ReadLine()) -1;
+            Console.Write("Choose character: ");
+            j = Int32.Parse(Console.ReadLine()) - 1;
             return j;
-          
+
         }
     }
 }
