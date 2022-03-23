@@ -174,7 +174,8 @@ namespace Fallout_3___Character_Creator
             Console.WriteLine("Agility:          " + characters[j].Agility);
             Console.WriteLine("Luck:             " + characters[j].Luck);
 
-
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue");
             Console.ReadLine();
             return;
         }
@@ -189,6 +190,7 @@ namespace Fallout_3___Character_Creator
             }
             Console.Write("Choose character: ");
             j = Int32.Parse(Console.ReadLine()) - 1;
+            Console.WriteLine("Press any key to continue");
             return j;
 
         }
