@@ -20,10 +20,8 @@ namespace Fallout_3___Character_Creator
                 if (characters.Count > 0)
                 {
                     Console.WriteLine("2. Change Skills");
-                }
-                if (characters.Count > 0)
-                {
                     Console.WriteLine("3. Print a Character");
+                    Console.WriteLine("4. Delete a Character");
                 }
                 Console.Write("Make choice: ");
 
@@ -41,9 +39,31 @@ namespace Fallout_3___Character_Creator
                         SelectCharacter();
                         PrintCharacter(j);
                         break;
+                    case "4":
+                        SelectCharacter();
+                        DeleteCharacter(j);
+                        break;
                     default:
                         break;
                 }
+            }
+        }
+
+        private static void DeleteCharacter(int j)
+        {
+            string delete="";
+            Console.Clear();
+            Console.WriteLine("Are you sure you want to delete {0}?",characters[j].Name);
+            Console.WriteLine("This action is permanent!");
+            Console.WriteLine("Enter DELETE below to delete {0}", characters[j].Name);
+            delete = Console.ReadLine();
+            switch (delete)
+            {
+                case "DELETE":
+                    characters.Remove(characters[j]);
+                    break;
+                default:
+                    break;
             }
         }
 
