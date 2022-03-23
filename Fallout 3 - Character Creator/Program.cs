@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace Fallout_3___Character_Creator
 {
@@ -43,6 +46,7 @@ namespace Fallout_3___Character_Creator
                         }
                         characters.Add(index);
                         Console.WriteLine(String.Format("Character {0} created successfully", index.Name));
+                        Console.WriteLine("Press Enter to continue");
                         Console.ReadLine();
                         break;
                     case "2":
@@ -162,6 +166,8 @@ namespace Fallout_3___Character_Creator
 
         private static void PrintCharacter(int j)
         {
+            Console.ReadLine();
+
             Console.Clear();
             Console.WriteLine("Name: {0,15}", characters[j].Name);
             Console.WriteLine("   S.P.E.C.I.A.L   ");
